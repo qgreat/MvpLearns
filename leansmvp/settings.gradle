@@ -1,0 +1,3 @@
+include ':app', ':CommonSDK', ':CommonService', ':CommonRes', ':module_zhihu', ':module_gank', ':cite', ':test', ':collect', 'module_gold'
+include ':yeyue'
+project(':yeyue').projectDir = new File(settingsDir, "../YeLibrary/yeyue")
