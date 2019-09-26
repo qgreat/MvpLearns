@@ -30,6 +30,7 @@ public class CommonListAdapter extends YeCommonListAdapter {
     protected void convert(BaseViewHolder helper, BaseItem data) {
         super.convert(helper,data);
         ViewDataBinding binding = (ViewDataBinding) helper.itemView.getTag(R.id.BaseQuickAdapter_databinding_support);
+//        这一步讲holder,Bean和DataBinding绑定在里一起
         CommonAdapterConvert.convert(helper,data,binding);
 //        BizhiAdapterConvert.convert(helper,data,binding);
     }

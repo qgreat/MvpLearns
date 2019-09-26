@@ -1,21 +1,13 @@
 package com.memory.collect.mvp.ui.adaptor.convert;
 
 import android.databinding.ViewDataBinding;
-import android.text.Html;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.memory.collect.R;
+import com.memory.collect.BR;
 import com.memory.collect.app.AdapterConstant;
-import com.memory.collect.mvp.model.entity.diycode.DiyNew;
 import com.memory.collect.mvp.model.entity.diycode.DiySite;
 import com.memory.collect.mvp.model.entity.diycode.DiySiteList;
-import com.memory.collect.mvp.model.entity.diycode.DiyTopic;
-import com.memory.collect.mvp.model.entity.diycode.DiyTopicReply;
-import com.memory.collect.mvp.model.entity.diycode.DiyUser;
 import com.yeyue.library.data.BaseItem;
-import com.yeyue.library.utils.ImageLoadUtils;
 
 /**
   *@describe 通用视图
@@ -24,6 +16,22 @@ import com.yeyue.library.utils.ImageLoadUtils;
   */
 public class CommonAdapterConvert {
     public static void convert(BaseViewHolder helper, BaseItem data, ViewDataBinding binding) {
+        switch (helper.getItemViewType()) {
 
+            case AdapterConstant.ITEM_DIY_SITE_LIST:
+                if (data != null && data instanceof DiySiteList) {
+                    DiySiteList item = (DiySiteList) data;
+                    binding.setVariable(BR.sites, item);
+                    //设置collect_item_diy_site_list.xml里的sites和item的关系
+                    //这样做的好处是，可以少很多负值等等操作
+                }
+                break;
+            case AdapterConstant.ITEM_DIY_SITE_DEFAULT:
+                if(data!=null && data instanceof DiySite){
+                    DiySite item = (DiySite) data;
+                    binding.setVariable(BR.site,item);
+                }
+                break;
+        }
     }
 }

@@ -21,9 +21,11 @@ public class DiycodeFragment extends YePageFragment {
         ArrayList<Fragment> fragments = new ArrayList<>();
         for (int i=0;i<titles.length;i++){
             if(i==0){
-                fragments.add(DiyCodeListFragment.newInstance(Constant.DIYCODE_TOPIC_LIST));
+//                fragments.add(DiyCodeListFragment.newInstance(Constant.DIYCODE_TOPIC_LIST));
+                fragments.add(DiyCodeListFragment.newInstance(Constant.DIYCODE_SITE_LIST));
             }else if(i==1){
-                fragments.add(DiyCodeListFragment.newInstance(Constant.DIYCODE_NEW_LIST));
+                fragments.add(DiyCodeListFragment.newInstance(Constant.DIYCODE_SITE_LIST));
+//                fragments.add(DiyCodeListFragment.newInstance(Constant.DIYCODE_NEW_LIST));
             }else{
                 fragments.add(DiyCodeListFragment.newInstance(Constant.DIYCODE_SITE_LIST));
             }
