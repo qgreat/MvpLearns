@@ -4,6 +4,7 @@ import android.app.Application;
 import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
+import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
 
@@ -43,7 +44,7 @@ import io.rx_cache2.EvictDynamicKey;
  * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
  * ================================================
  */
-@FragmentScope
+@ActivityScope
 public class DiyCodeListModel extends BaseModel implements DiyCodeListContract.Model {
 	@Inject
 	Gson mGson;

@@ -32,8 +32,8 @@ public abstract class BaseUiFragment<P extends IPresenter> extends BaseFragment<
 	public Toolbar mToolbar;
 	protected LinearLayout mLlContent;
 	protected View rootView;
-	private LoadService loadService;
 	protected BaseUiFragment baseuiFragment;
+	private LoadService loadService;
 	private boolean isFirstResume = true;
 	private boolean isFirstVisible = true;
 	private boolean isFirstInvisible = true;
@@ -77,6 +77,7 @@ public abstract class BaseUiFragment<P extends IPresenter> extends BaseFragment<
 			mToolbar.setVisibility(View.GONE);
 		}
 		findView(rootView);
+		isViewCreated = true;
 		if (getLoadView() != null) {
 			loadService = LoadSir.getDefault().register(getLoadView(), new Callback.OnReloadListener() {
 				@Override
@@ -87,7 +88,6 @@ public abstract class BaseUiFragment<P extends IPresenter> extends BaseFragment<
 			});
 			showLoadSirView(YeConstant.LoadSir.LOADING);
 		}
-		isViewCreated = true;
 		return rootView;
 	}
 
@@ -164,10 +164,15 @@ public abstract class BaseUiFragment<P extends IPresenter> extends BaseFragment<
 
 	}
 
+	/**
+	 * @param hidden initData在两种地方一种普通fragment里的onHiddenChanged,
+	 *               一种 ViewPager里的fragment
+	 */
 	//当没有使用ViewPage的时候，不会执行setUserVisibleHint方法，需要手动执行
 	@Override
 	public void onHiddenChanged(boolean hidden) {
 		super.onHiddenChanged(hidden);
+		//只有第一次会去加载的
 		if (!hidden && !isHiddenChanged) {
 			isHiddenChanged = true;
 			initData();
@@ -196,6 +201,9 @@ public abstract class BaseUiFragment<P extends IPresenter> extends BaseFragment<
 		initPrepare();
 	}
 
+	/**
+	 * 第一次resume时并不一定显示的
+	 */
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -218,7 +226,15 @@ public abstract class BaseUiFragment<P extends IPresenter> extends BaseFragment<
 
 	/***
 	 * 监听Fragment显示隐藏
+	 * 这个方法是在oncreateView之前使用 不要使用控件
+	 *ViewPager同时加载多个fragment，以实现多tab页面快速切换，会导致一次加载太多界面
+	 * 所以要用懒加载
 	 */
+
+	// TODO: 2019/9/23 ？？？
+//	viewpager监听切换tab事件，tab切换一次，执行一次setUserVisibleHint()方法
+//	setUserVisibleHint() 在 上图所示fragment所有生命周期之前，无论viewpager是在activity哪个生命周期里初始化。
+//	activity生命周期 和 fragment生命周期 时序并不是按序来的，也就是说fragment的oncreate方法时序并不一定在activity的oncreate方法之后。
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
 		super.setUserVisibleHint(isVisibleToUser);
@@ -230,6 +246,7 @@ public abstract class BaseUiFragment<P extends IPresenter> extends BaseFragment<
 				onUserVisible();
 			}
 		} else {
+			//第一次隐藏时，为何不去调用onUserInvisible
 			if (isFirstInvisible) {
 				isFirstInvisible = false;
 			} else {
@@ -244,6 +261,7 @@ public abstract class BaseUiFragment<P extends IPresenter> extends BaseFragment<
 	}
 
 	private synchronized void initPrepare() {
+		//只有准备好时才能消除数据
 		if (isPrepared) {
 			initData();
 		} else {
@@ -260,7 +278,7 @@ public abstract class BaseUiFragment<P extends IPresenter> extends BaseFragment<
 	protected abstract void initData();
 
 	protected void onUserInvisible() {
-
+//这里，必须prepare为true时才去调用
 	}
 
 	public void resume() {

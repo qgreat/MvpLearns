@@ -43,7 +43,6 @@ import com.yeyue.library.R;
 
 
 public class ExpandableTextView extends LinearLayout implements View.OnClickListener {
-
     private static final String TAG = ExpandableTextView.class.getSimpleName();
 
     /* The default number of lines */

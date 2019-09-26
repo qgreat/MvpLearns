@@ -20,7 +20,11 @@ public class AdapterShine{
     public static Map<Integer, Integer> fetchAdapterMap(){
         Map<Integer, Integer> maps = new HashMap<>();
         /*DiyCode*/
-
+//        maps.put(AdapterConstant.ITEM_DIY_TOPIC_DEFAULT, R.layout.item_diy_topic_default);
+//        maps.put(AdapterConstant.ITEM_DIY_TOPIC_REPLAY, R.layout.item_diy_topic_replay);
+//        maps.put(AdapterConstant.ITEM_DIY_NEW_DEFAULT, R.layout.item_diy_new_default);
+        maps.put(AdapterConstant.ITEM_DIY_SITE_DEFAULT, R.layout.item_diy_site_default);
+        maps.put(AdapterConstant.ITEM_DIY_SITE_LIST, R.layout.collect_item_diy_site_list);
         return maps;
     }
 }

@@ -24,6 +24,8 @@ public class MainActivity extends YeDrawerFragmentActivity<IPresenter> {
 		switch (tag) {
 			case R.id.nav_diycode:
 				return new DiycodeFragment();
+			case R.id.nav_header_layout:
+				return new DiycodeFragment();
 		}
 		return null;
 	}

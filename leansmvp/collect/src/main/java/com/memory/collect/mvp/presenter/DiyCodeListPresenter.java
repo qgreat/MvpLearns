@@ -3,6 +3,7 @@ package com.memory.collect.mvp.presenter;
 import android.app.Application;
 import android.support.annotation.Nullable;
 
+import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.FragmentScope;
 import com.jess.arms.http.imageloader.ImageLoader;
@@ -31,7 +32,7 @@ import java.util.List;
  * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
  * ================================================
  */
-@FragmentScope
+@ActivityScope
 public class DiyCodeListPresenter extends YeListIPresenter<DiyCodeListContract.Model, DiyCodeListContract.View> {
 	@Inject
 	RxErrorHandler mErrorHandler;
@@ -81,6 +82,7 @@ public class DiyCodeListPresenter extends YeListIPresenter<DiyCodeListContract.M
 	}
 
 	public void getSites(boolean pullToRefresh) {
+		getDataList(mModel.getSites(), mDatas, mRootView, mErrorHandler, pullToRefresh);
 	}
 
 	public void getUserCreateTopicList(String extend, String recent, boolean pullToRefresh) {

@@ -15,12 +15,12 @@ import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 import com.memory.collect.R;
 import com.memory.collect.app.Constant;
 import com.memory.collect.di.component.DaggerDiyCodeListComponent;
+import com.memory.collect.di.module.DiyCodeListModule;
 import com.memory.collect.mvp.contract.DiyCodeListContract;
 import com.memory.collect.mvp.model.entity.diycode.DiySite;
 import com.memory.collect.mvp.presenter.DiyCodeListPresenter;
@@ -71,15 +71,11 @@ public class DiyCodeListFragment extends YeRecyFragment<BaseItem, DiyCodeListPre
 		DaggerDiyCodeListComponent //如找不到该类,请编译一下项目
 				.builder()
 				.appComponent(appComponent)
-				.view(this)
+				.diyCodeListModule(new DiyCodeListModule(this))
 				.build()
 				.inject(this);
 	}
 
-	@Override
-	public View initView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_diy_code_list, container, false);
-	}
 
 	@Override
 	public void initData(@Nullable Bundle savedInstanceState) {
@@ -101,7 +97,6 @@ public class DiyCodeListFragment extends YeRecyFragment<BaseItem, DiyCodeListPre
 				try{
 					node_id = Integer.valueOf(extend);
 				}catch (Exception e){
-
 				}
 				mPresenter.getTopicsList(null,node_id,pullToRefresh);
 				break;
@@ -110,7 +105,6 @@ public class DiyCodeListFragment extends YeRecyFragment<BaseItem, DiyCodeListPre
 				try{
 					new_node_id = Integer.valueOf(extend);
 				}catch (Exception e){
-
 				}
 				mPresenter.getNewsList(new_node_id,pullToRefresh);
 				break;
@@ -175,15 +169,6 @@ public class DiyCodeListFragment extends YeRecyFragment<BaseItem, DiyCodeListPre
 
 	}
 
-	@Override
-	public void showLoading() {
-
-	}
-
-	@Override
-	public void hideLoading() {
-
-	}
 
 	@Override
 	public void showMessage(@NonNull String message) {
@@ -209,12 +194,12 @@ public class DiyCodeListFragment extends YeRecyFragment<BaseItem, DiyCodeListPre
 
 	@Override
 	public void onDataRefresh() {
-
+		getData(true);
 	}
 
 	@Override
 	public void onDataLoadMore() {
-
+		getData(false);
 	}
 
 	@Override

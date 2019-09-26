@@ -5,6 +5,7 @@ import dagger.Component;
 
 import com.jess.arms.di.component.AppComponent;
 
+import com.jess.arms.di.scope.ActivityScope;
 import com.memory.collect.di.module.DiyCodeListModule;
 import com.memory.collect.mvp.contract.DiyCodeListContract;
 
@@ -24,18 +25,9 @@ import com.memory.collect.mvp.ui.fragment.DiyCodeListFragment;
  * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
  * ================================================
  */
-@FragmentScope
+@ActivityScope
 @Component(modules = DiyCodeListModule.class, dependencies = AppComponent.class)
 public interface DiyCodeListComponent {
 	void inject(DiyCodeListFragment fragment);
 
-	@Component.Builder
-	interface Builder {
-		@BindsInstance
-		DiyCodeListComponent.Builder view(DiyCodeListContract.View view);
-
-		DiyCodeListComponent.Builder appComponent(AppComponent appComponent);
-
-		DiyCodeListComponent build();
-	}
 }
