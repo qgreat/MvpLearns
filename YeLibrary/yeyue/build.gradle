@@ -86,12 +86,12 @@ dependencies {
     /*腾讯BUgly https://bugly.qq.com/v2/index*/
     api  'com.tencent.bugly:crashreport:2.6.6'
     /*自定义换肤 https://github.com/ximsfei/Android-skin-support/blob/master/docs/cn/README.md*/
-    api  'skin.support:skin-support:2.2.2'                   // skin-support 基础控件支持
-    api  'skin.support:skin-support-design:2.2.2'            // skin-support-design material design 控件支持[可选]
-    api('skin.support:skin-support-cardview:2.2.2') { // skin-support-cardview CardView 控件支持[可选]
+    api  'skin.support:skin-support:3.1.4'                   // skin-support 基础控件支持
+    api  'skin.support:skin-support-design:3.1.4'            // skin-support-design material design 控件支持[可选]
+    api('skin.support:skin-support-cardview:3.1.4') { // skin-support-cardview CardView 控件支持[可选]
         exclude module: 'com.android.support:recyclerview'
     }
-    api  'skin.support:skin-support-constraint-layout:2.2.2' // skin-support-constraint-layout ConstraintLayout 控件支持[可选]
+    api  'skin.support:skin-support-constraint-layout:3.1.4' // skin-support-constraint-layout ConstraintLayout 控件支持[可选]
 
     /*滑动关闭页面 https://github.com/bingoogolapple/BGASwipeBackLayout-Android*/
     api  'cn.bingoogolapple:bga-swipebacklayout:1.1.8@aar'
