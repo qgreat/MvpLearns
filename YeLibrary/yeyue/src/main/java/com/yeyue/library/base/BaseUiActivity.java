@@ -82,6 +82,7 @@ public abstract class BaseUiActivity<P extends IPresenter> extends BaseActivity<
      */
     @Subscriber
     public void updateAppSkin(YeSkinItem skin) {
+        // TODO: 2019/9/27 动态通过eventBus， 
         Activity activity = getActivity();
         if(activity instanceof YeHeaderRecyActivity || activity instanceof YeHeaderContentActivity){
             //不设置状态栏
