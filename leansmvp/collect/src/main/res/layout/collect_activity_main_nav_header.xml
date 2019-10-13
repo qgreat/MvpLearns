@@ -49,7 +49,7 @@
             android:layout_below="@id/nav_header_image"
             android:layout_centerHorizontal="true"
             app:layout_marginTopPercent="2%w"
-            android:text="夜神月"
+            android:text="Collect"
             android:textColor="@color/collect_color_Main_Body"
             app:layout_textSizePercent="6%w" />
 

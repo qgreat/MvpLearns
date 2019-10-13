@@ -32,7 +32,7 @@ import java.util.List;
  * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
  * ================================================
  */
-@ActivityScope
+@FragmentScope
 public class DiyCodeListPresenter extends YeListIPresenter<DiyCodeListContract.Model, DiyCodeListContract.View> {
 	@Inject
 	RxErrorHandler mErrorHandler;
@@ -85,19 +85,54 @@ public class DiyCodeListPresenter extends YeListIPresenter<DiyCodeListContract.M
 		getDataList(mModel.getSites(), mDatas, mRootView, mErrorHandler, pullToRefresh);
 	}
 
-	public void getUserCreateTopicList(String extend, String recent, boolean pullToRefresh) {
+	public void getUserCreateTopicList(String login_name, String order, boolean pullToRefresh) {
+		if(pullToRefresh){
+			page = 1;
+		}else{
+			page++;
+		}
+		Integer offset = (page-1)*pregPage;
+		getDataList(mModel.getUserCreateTopicList(login_name,order,offset,pregPage), mDatas, mRootView, mErrorHandler, pullToRefresh);
 	}
 
-	public void getUserCollectionTopicList(String extend, boolean pullToRefresh) {
+	public void getUserCollectionTopicList(String login_name, boolean pullToRefresh) {
+		if(pullToRefresh){
+			page = 1;
+		}else{
+			page++;
+		}
+		Integer offset = (page-1)*pregPage;
+		getDataList(mModel.getUserCollectionTopicList(login_name,offset,pregPage), mDatas, mRootView, mErrorHandler, pullToRefresh);
 	}
 
-	public void getUserReplyTopicList(String extend, String recent, boolean pullToRefresh) {
+	public void getUserReplyTopicList(String login_name, String order, boolean pullToRefresh) {
+		if(pullToRefresh){
+			page = 1;
+		}else{
+			page++;
+		}
+		Integer offset = (page-1)*pregPage;
+		getDataList(mModel.getUserReplyTopicList(login_name,order,offset,pregPage), mDatas, mRootView, mErrorHandler, pullToRefresh);
 	}
 
-	public void getUserFollowingList(String extend, boolean pullToRefresh) {
+	public void getUserFollowingList(String login_name, boolean pullToRefresh) {
+		if(pullToRefresh){
+			page = 1;
+		}else{
+			page++;
+		}
+		Integer offset = (page-1)*pregPage;
+		getDataList(mModel.getUserFollowerList(login_name,offset,pregPage), mDatas, mRootView, mErrorHandler, pullToRefresh);
 	}
 
-	public void getUserFollowerList(String extend, boolean pullToRefresh) {
+	public void getUserFollowerList(String login_name, boolean pullToRefresh) {
+		if(pullToRefresh){
+			page = 1;
+		}else{
+			page++;
+		}
+		Integer offset = (page-1)*pregPage;
+		getDataList(mModel.getUserFollowingList(login_name,offset,pregPage), mDatas, mRootView, mErrorHandler, pullToRefresh);
 	}
 
 	public  List<BaseItem>  getmDatas() {

@@ -1,20 +1,17 @@
-/*
 package com.memory.collect.utils;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
-import com.yeyue.learns.constant.Constant;
-import com.yeyue.learns.enity.wechat.WeChatTag;
+import com.memory.collect.app.Constant;
+import com.memory.collect.mvp.model.entity.wechat.WeChatTag;
+
+import org.simple.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-*/
-/**
- * Created by li.xiao on 2018-1-12.
- *//*
 
 
 public class WeChatUtils {
@@ -67,6 +64,21 @@ public class WeChatUtils {
         }
         return list;
     }
+    public static List<WeChatTag> selectWeChatTags(int tagNums){
+        List<WeChatTag> allList = getWeChatTags();
+        List<WeChatTag> list = new ArrayList<>();
+        Set<String> tags = SPUtils.getInstance().getStringSet(Constant.SP.WECHAT_LIFE_TAG,new TreeSet<>());
+        if(allList!=null && allList.size()>=tagNums){
+            for (int i=0;i<tagNums;i++){
+                if(allList.get(i)!=null && allList.get(i).isCheck()){
+                    tags.add(allList.get(i).getTag());
+                    list.add(allList.get(i));
+                }
+            }
+        }
+        SPUtils.getInstance().put(Constant.SP.WECHAT_LIFE_TAG,tags);
+        return list;
+    }
 
     public static boolean addLeftTag(String tag){
         Set<String> tags = SPUtils.getInstance().getStringSet(Constant.SP.WECHAT_LIFE_TAG,new TreeSet<>());
@@ -117,4 +129,4 @@ public class WeChatUtils {
         return list;
     }
 }
-*/
+

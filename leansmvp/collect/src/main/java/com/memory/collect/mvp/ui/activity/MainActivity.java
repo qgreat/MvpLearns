@@ -11,6 +11,8 @@ import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.mvp.IPresenter;
 import com.memory.collect.R;
 import com.memory.collect.mvp.ui.fragment.DiycodeFragment;
+import com.memory.collect.mvp.ui.fragment.WeChatFragment;
+import com.memory.collect.utils.ActivityUtils;
 import com.yeyue.library.base.YeDrawerFragmentActivity;
 import com.yeyue.library.base.YeWebActivity;
 
@@ -26,6 +28,8 @@ public class MainActivity extends YeDrawerFragmentActivity<IPresenter> {
 				return new DiycodeFragment();
 			case R.id.nav_header_layout:
 				return new DiycodeFragment();
+			case R.id.nav_wechat:
+				return new WeChatFragment();
 		}
 		return null;
 	}
@@ -37,7 +41,7 @@ public class MainActivity extends YeDrawerFragmentActivity<IPresenter> {
 		View headerView = mNavView.getHeaderView(0);
 		headerView.setOnClickListener(v -> {
 					mDrawerLayout.closeDrawer(GravityCompat.START);
-			YeWebActivity.loadUrl(MainActivity.this, "https://github.com/yeyueduxing", "Collect");
+			YeWebActivity.loadUrl(MainActivity.this, "https://github.com/qgreat", "Collect");
 				}
 		);
 		mToolbar.setNavigationIcon(R.drawable.icon_nav_titlebar_menu);
@@ -50,12 +54,14 @@ public class MainActivity extends YeDrawerFragmentActivity<IPresenter> {
 	public boolean onNavItemSelected(MenuItem item) {
 		boolean isSelect = true;
 		switch (item.getItemId()) {
-			case R.id.nav_skin: {
-				isSelect = false;
-			}
+//			case R.id.nav_skin: {
+//				isSelect = false;
+//			}
 			case R.id.nav_setting: {
 				isSelect = false;
-			}
+                ActivityUtils.openSettingActivity(getActivity());
+
+            }
 			default:{
 				goFragment(item.getItemId());
 			}
@@ -65,7 +71,7 @@ public class MainActivity extends YeDrawerFragmentActivity<IPresenter> {
 
 	@Override
 	public int initDefaultTag() {
-		return R.id.nav_bizhi;
+		return R.id.nav_diycode;
 	}
 
 	@Override

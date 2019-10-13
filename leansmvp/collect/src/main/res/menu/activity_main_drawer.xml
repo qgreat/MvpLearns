@@ -25,41 +25,17 @@
 
     <item android:title="用户设置">
         <item
-            android:id="@+id/nav_wan"
-            android:icon="@drawable/nav_app_icon_bizhi"
-            android:title="玩安卓"/>
-        <item
             android:id="@+id/nav_diycode"
             android:icon="@drawable/nav_app_icon_diycode"
             android:title="DiyCode"/>
         <item
-            android:id="@+id/nav_gank"
-            android:icon="@drawable/nav_app_icon_gank"
-            android:title="干货"/>
-        <item
             android:id="@+id/nav_wechat"
             android:icon="@drawable/nav_app_icon_wechat"
             android:title="微信资讯"/>
-        <item
-            android:id="@+id/nav_gamerSky"
-            android:icon="@drawable/nav_app_icon_gamersky"
-            android:title="游明星空"/>
-        <item
-            android:id="@+id/nav_movie"
-            android:icon="@drawable/nav_app_icon_movie"
-            android:title="影视"/>
-        <item
-            android:id="@+id/nav_bizhi"
-            android:icon="@drawable/nav_app_icon_bizhi"
-            android:title="壁纸"/>
     </item>
 
     <item android:title="软件设置">
         <menu>
-            <item
-                android:id="@+id/nav_skin"
-                android:icon="@drawable/nav_app_icon_skin"
-                android:title="换肤"/>
             <item
                 android:id="@+id/nav_setting"
                 android:icon="@drawable/nav_app_icon_setting"

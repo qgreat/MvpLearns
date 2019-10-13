@@ -1,5 +1,7 @@
 package com.memory.collect.utils;
 
+import android.text.TextUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,6 +11,9 @@ import java.util.Locale;
 public class TimeUtils {
 
     public static String computePastTime(String time) {
+        if (TextUtils.isEmpty(time)) {
+            return "";
+        }
         // Log.v(TAG, "computePastTime: " + time);
         String result = "刚刚";
         //2017-02-13T01:20:13.035+08:00

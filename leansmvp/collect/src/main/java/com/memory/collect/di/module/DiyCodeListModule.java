@@ -36,13 +36,13 @@ public  class DiyCodeListModule {
 		this.view = view;
 	}
 
-	@ActivityScope
+	@FragmentScope
 	@Provides
 	DiyCodeListContract.View provideCommonListView() {
 		return this.view;
 	}
 
-	@ActivityScope
+	@FragmentScope
 	@Provides
 	DiyCodeListContract.Model provideCommonListModel(DiyCodeListModel model) {
 		return model;

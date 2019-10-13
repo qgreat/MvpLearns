@@ -1,23 +1,20 @@
 package com.memory.collect.di.component;
 
-import dagger.BindsInstance;
 import dagger.Component;
 
 import com.jess.arms.di.component.AppComponent;
 
-import com.jess.arms.di.scope.ActivityScope;
-import com.memory.collect.di.module.DiyCodeListModule;
-import com.memory.collect.mvp.contract.DiyCodeListContract;
+import com.memory.collect.di.module.WeChatListModule;
 
 import com.jess.arms.di.scope.FragmentScope;
-import com.memory.collect.mvp.ui.fragment.DiyCodeListFragment;
+import com.memory.collect.mvp.ui.fragment.WeChatListFragment;
 
 
 /**
  * ================================================
  * Description:
  * <p>
- * Created by MVPArmsTemplate on 09/17/2019 14:46
+ * Created by MVPArmsTemplate on 10/14/2019 02:31
  * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
  * <a href="https://github.com/JessYanCoding">Follow me</a>
  * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
@@ -26,7 +23,8 @@ import com.memory.collect.mvp.ui.fragment.DiyCodeListFragment;
  * ================================================
  */
 @FragmentScope
-@Component(modules = DiyCodeListModule.class, dependencies = AppComponent.class)
-public interface DiyCodeListComponent {
-	void inject(DiyCodeListFragment fragment);
+@Component(modules = WeChatListModule.class, dependencies = AppComponent.class)
+public interface WeChatListComponent {
+    void inject(WeChatListFragment fragment);
+
 }

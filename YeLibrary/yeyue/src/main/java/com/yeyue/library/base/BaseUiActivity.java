@@ -19,7 +19,9 @@ import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 import com.kingja.loadsir.core.Transport;
 import com.r0adkll.slidr.Slidr;
+import com.r0adkll.slidr.model.SlidrConfig;
 import com.r0adkll.slidr.model.SlidrInterface;
+import com.r0adkll.slidr.model.SlidrPosition;
 import com.yeyue.library.R;
 import com.yeyue.library.constant.YeConstant;
 import com.yeyue.library.contract.YeBaseUiActivityView;
@@ -45,7 +47,12 @@ public abstract class BaseUiActivity<P extends IPresenter> extends BaseActivity<
         super.onCreate(savedInstanceState);
         // 设置右滑动返回
         if(isSlide()){
-            slidrInterface = Slidr.attach(this);
+            SlidrConfig slidrConfig = new SlidrConfig.Builder()
+                    .edge(true)
+                    .position(SlidrPosition.LEFT)
+                    .build();
+
+            slidrInterface = Slidr.attach(this,slidrConfig);
         }
     }
 

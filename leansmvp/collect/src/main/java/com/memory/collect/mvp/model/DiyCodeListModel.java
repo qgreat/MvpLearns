@@ -44,7 +44,7 @@ import io.rx_cache2.EvictDynamicKey;
  * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
  * ================================================
  */
-@ActivityScope
+@FragmentScope
 public class DiyCodeListModel extends BaseModel implements DiyCodeListContract.Model {
 	@Inject
 	Gson mGson;
@@ -76,6 +76,7 @@ public class DiyCodeListModel extends BaseModel implements DiyCodeListContract.M
 	@Override
 	public Observable<List<BaseItem>> getNewsList(@Nullable Integer node_id, @Nullable Integer offset, @Nullable Integer limit) {
 		Observable<List<BaseItem>> observable = mRepositoryManager.obtainRetrofitService(DiyCodeService.class)
+				//flatmap可以输出1-1，多-多，list-list
 				.getNewsList(node_id,offset,limit).flatMap(new Function<List<DiyNew>,ObservableSource<List<BaseItem>>>() {
 					@Override
 					public ObservableSource<List<BaseItem>> apply(@NonNull List<DiyNew> listReply) throws Exception {

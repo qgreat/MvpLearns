@@ -46,31 +46,32 @@ public class ImageLoadUtils {
 //        AppComponent mAppComponent  = ((App) context.getApplicationContext()).getAppComponent();
         AppComponent mAppComponent = ArmsUtils.obtainAppComponentFromContext(context);
         ImageLoader mImageLoader = mAppComponent.imageLoader();
-        mImageLoader.loadImage(context,
-                CommonImageConfigImpl
-                        .builder()
-                        .url(url)
-                        .imageView(imageView)
+        CommonImageConfigImpl.Builder builder =  CommonImageConfigImpl
+                .builder()
+                .url(url)
+                .imageView(imageView);
+        if(SPUtils.getInstance(YeConstant.ShareP.SPNAME).getBoolean(YeConstant.ShareP.LOADIMAGEVIEW,true)){
+            if(NetworkUtils.isMobileData()){
+                builder.cacheStrategy(5);
+            }
+        }
+        if(bitmapTransformation!=null){
+            builder.transformation(bitmapTransformation);
+        }
+        if(placeholder!=0){
+            builder.placeholder(placeholder);
+        }
+        if(errorPic!=0){
+            builder.errorPic(errorPic);
+        }
+                mImageLoader.loadImage(context,builder
                         .build());
         // TODO: 2019/9/26  why belowe code error 
 //        ImageConfigImpl.Builder builder = ImageConfigImpl.builder();
 //        builder.url(url);
 //        builder.imageView(imageView);
 //        //判断网络是否为4G，4G网络不加载网络图片
-//        if(SPUtils.getInstance(YeConstant.ShareP.SPNAME).getBoolean(YeConstant.ShareP.LOADIMAGEVIEW,true)){
-//            if(NetworkUtils.isMobileData()){
-//                builder.cacheStrategy(5);
-//            }
-//        }
-//        if(bitmapTransformation!=null){
-//            builder.transformation(bitmapTransformation);
-//        }
-//        if(placeholder!=0){
-//            builder.placeholder(placeholder);
-//        }
-//        if(errorPic!=0){
-//            builder.errorPic(errorPic);
-//        }
+//
 //        mImageLoader.loadImage(context,builder.build());
     }
     public static void clear(Context context){

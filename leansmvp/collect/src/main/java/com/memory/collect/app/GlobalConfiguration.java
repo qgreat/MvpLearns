@@ -68,12 +68,13 @@ public final class GlobalConfiguration implements ConfigModule {
 				LeakCanary.install(application);
 				((App) application).getAppComponent().extras().put(RefWatcher.class.getName(), BuildConfig.USE_CANARY ? LeakCanary.install(application) : RefWatcher.DISABLED);
                 RetrofitUrlManager.getInstance().putDomain(Constant.Domain.DIYCODE, Constant.Domain.DIYCODE_URL);
-                RetrofitUrlManager.getInstance().putDomain(Constant.Domain.GANK, Constant.Domain.GANK_URL);
-                RetrofitUrlManager.getInstance().putDomain(Constant.Domain.WECHAT, Constant.Domain.WECHAT_URL);
-                RetrofitUrlManager.getInstance().putDomain(Constant.Domain.GAMERSKY, Constant.Domain.GAMERSKY_URL);
-                RetrofitUrlManager.getInstance().putDomain(Constant.Domain.MOVIE, Constant.Domain.MOVIE_URL);
-                RetrofitUrlManager.getInstance().putDomain(Constant.Domain.BIZHI, Constant.Domain.BIZHI_URL);
-                RetrofitUrlManager.getInstance().putDomain(Constant.Domain.WAN, Constant.Domain.WAN_URL);
+				RetrofitUrlManager.getInstance().putDomain(Constant.Domain.WECHAT, Constant.Domain.WECHAT_URL);
+
+//				RetrofitUrlManager.getInstance().putDomain(Constant.Domain.GANK, Constant.Domain.GANK_URL);
+//                RetrofitUrlManager.getInstance().putDomain(Constant.Domain.GAMERSKY, Constant.Domain.GAMERSKY_URL);
+//                RetrofitUrlManager.getInstance().putDomain(Constant.Domain.MOVIE, Constant.Domain.MOVIE_URL);
+//                RetrofitUrlManager.getInstance().putDomain(Constant.Domain.BIZHI, Constant.Domain.BIZHI_URL);
+//                RetrofitUrlManager.getInstance().putDomain(Constant.Domain.WAN, Constant.Domain.WAN_URL);
 //                CrashReport.initCrashReport(application.getApplicationContext(), BuildConfig.BUGLY_APPID, true);
 			}
 
@@ -96,11 +97,17 @@ public final class GlobalConfiguration implements ConfigModule {
 			lifecycles.add(new FragmentManager.FragmentLifecycleCallbacks() {
 				@Override
 				public void onFragmentDestroyed(FragmentManager fm, Fragment f) {
-					((RefWatcher) ArmsUtils
-							.obtainAppComponentFromContext(f.getActivity())
-							.extras()
-							.get(IntelligentCache.getKeyOfKeep(RefWatcher.class.getName())))
-							.watch(f);
+					if (f != null) {
+						RefWatcher refWatcher=		((RefWatcher) ArmsUtils
+								.obtainAppComponentFromContext(f.getActivity())
+								.extras()
+								.get(IntelligentCache.getKeyOfKeep(RefWatcher.class.getName())));
+						if (refWatcher != null && f != null) {
+							refWatcher.watch(f);
+						}
+
+					}
+
 				}
 			});
 		}
