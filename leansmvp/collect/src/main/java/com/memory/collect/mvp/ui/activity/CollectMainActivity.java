@@ -7,6 +7,7 @@ import android.support.v4.view.GravityCompat;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.mvp.IPresenter;
 import com.memory.collect.R;
@@ -16,21 +17,23 @@ import com.memory.collect.utils.ActivityUtils;
 import com.yeyue.library.base.YeDrawerFragmentActivity;
 import com.yeyue.library.base.YeWebActivity;
 
+import me.jessyan.armscomponent.commonsdk.core.RouterHub;
+
 /**
  * Created by yachaoqi
  * on 2019/9/17.
  */
-public class MainActivity extends YeDrawerFragmentActivity<IPresenter> {
+@Route(path = RouterHub.COLLECT_HOMEACTIVITY_COLLECT)
+public class CollectMainActivity extends YeDrawerFragmentActivity<IPresenter> {
 	@Override
 	public Fragment getFragment(int tag) {
-		switch (tag) {
-			case R.id.nav_diycode:
+			if (tag == R.id.nav_diycode) {
 				return new DiycodeFragment();
-			case R.id.nav_header_layout:
+			} else if (tag == R.id.nav_header_layout) {
 				return new DiycodeFragment();
-			case R.id.nav_wechat:
+			}else if(tag==R.id.nav_wechat){
 				return new WeChatFragment();
-		}
+			}
 		return null;
 	}
 
@@ -41,7 +44,7 @@ public class MainActivity extends YeDrawerFragmentActivity<IPresenter> {
 		View headerView = mNavView.getHeaderView(0);
 		headerView.setOnClickListener(v -> {
 					mDrawerLayout.closeDrawer(GravityCompat.START);
-			YeWebActivity.loadUrl(MainActivity.this, "https://github.com/qgreat", "Collect");
+			YeWebActivity.loadUrl(this, "https://github.com/qgreat", "Collect");
 				}
 		);
 		mToolbar.setNavigationIcon(R.drawable.icon_nav_titlebar_menu);
@@ -53,19 +56,15 @@ public class MainActivity extends YeDrawerFragmentActivity<IPresenter> {
 	@Override
 	public boolean onNavItemSelected(MenuItem item) {
 		boolean isSelect = true;
-		switch (item.getItemId()) {
 //			case R.id.nav_skin: {
 //				isSelect = false;
 //			}
-			case R.id.nav_setting: {
+			if (R.id.nav_setting == item.getItemId()) {
 				isSelect = false;
-                ActivityUtils.openSettingActivity(getActivity());
-
-            }
-			default:{
+				ActivityUtils.openSettingActivity(getActivity());
+			}else {
 				goFragment(item.getItemId());
 			}
-		}
 		return isSelect;
 	}
 
@@ -96,7 +95,12 @@ public class MainActivity extends YeDrawerFragmentActivity<IPresenter> {
 
 	@Override
 	public int getNavMenuId() {
-		return R.menu.activity_main_drawer;
+		return R.menu.collect_activity_main_drawer;
+	}
+
+	@Override
+	public boolean isMainPage() {
+		return false;
 	}
 
 	@Override

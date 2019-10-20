@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/public_AppTheme">
         <activity
-            android:name=".mvp.ui.activity.MainActivity"
+            android:name=".mvp.ui.activity.CollectMainActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait">
             <intent-filter>

@@ -47,6 +47,7 @@ public interface RouterHub {
     String GANK = "/gank";//干货集中营组件
     String GOLD = "/gold";//稀土掘金组件
     String CITE = "/cite";//稀土掘金组件
+    String COLLECT = "/collect";//稀土掘金组件
 
     /**
      * 服务组件, 用于给每个组件暴露特有的服务
@@ -89,5 +90,9 @@ public interface RouterHub {
      */
     String CITE_SERVICE_CITEINFOSERVICE = CITE + SERVICE + "/CiteInfoService";
     String CITE_HOMEACTIVITY_CITE = CITE + "/MainActivity";
-
+    /**
+     * CITEDOWN
+     */
+    String COLLECT_SERVICE_COLLECTINFOSERVICE = COLLECT + SERVICE + "/CollectInfoService";
+    String COLLECT_HOMEACTIVITY_COLLECT = COLLECT + "/MainActivity";
 }

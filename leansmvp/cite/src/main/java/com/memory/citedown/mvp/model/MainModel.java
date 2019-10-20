@@ -73,6 +73,7 @@ public class MainModel extends BaseModel implements MainContract.Model {
 		list.add(a24);
 		list.add(a40);
 		List<String> dataList = new ArrayList<>();
+		dataList.add("科学记忆法");
 		for (int i = 0; i < list.size(); i++) {
 			long timeMillis = getDateTimeInMillis12() - list.get(i);
 			Date date = new Date(timeMillis * 1000L);

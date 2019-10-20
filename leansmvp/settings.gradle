@@ -1,3 +1,5 @@
-include ':app', ':CommonSDK', ':CommonService', ':CommonRes', ':module_zhihu', ':module_gank', ':cite', ':test', ':collect', 'module_gold'
+include ':app', ':CommonSDK', ':CommonService', ':CommonRes', ':module_zhihu', ':module_gank', 'module_gold'
+include  ':cite', ':test'
+include ':collect'
 include ':yeyue'
 project(':yeyue').projectDir = new File(settingsDir, "../YeLibrary/yeyue")

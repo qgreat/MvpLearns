@@ -47,6 +47,7 @@ public abstract class YeDrawerFragmentActivity<P extends IPresenter> extends Bas
     public abstract void intToolBar();
     public abstract int getNavHeaderViewId();
     public abstract int getNavMenuId();
+    public abstract boolean isMainPage();
 
     @Override
     public int initView(Bundle savedInstanceState) {
@@ -233,7 +234,11 @@ public abstract class YeDrawerFragmentActivity<P extends IPresenter> extends Bas
                 mDrawerLayout.closeDrawer(GravityCompat.START);
             } else {
                 // 不退出程序，进入后台
-                moveTaskToBack(true);
+                if (isMainPage()) {
+                    moveTaskToBack(true);
+                }else {
+                    return super.onKeyDown(keyCode, event);
+                }
             }
             return true;
         }

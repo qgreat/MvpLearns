@@ -6,8 +6,6 @@ android {
     useLibrary 'org.apache.http.legacy'
 
     compileOptions {
-
-        
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
@@ -45,7 +43,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
+    dataBinding{
+        enabled = true
+    }
     lintOptions {
         disable 'InvalidPackage'
         disable "ResourceType"
@@ -61,14 +61,17 @@ dependencies {
         runtimeOnly project(":module_zhihu")
         runtimeOnly project(":module_gank")
         runtimeOnly project(":module_gold")
-        //原来这里不清楚，老是这种错误，还是太急功近利了，对基础不熟
         //编译时时不依赖的，就不能在代码里直接继承了，否则找不到类的
         runtimeOnly project(":cite")
-        runtimeOnly project(":collect")
+        //databinding的问题，如果module里面用到databinding的话，runtimeOnly会导致找不到资源的
+        implementation project(":collect")
+    }else {
+        api project(":yeyue")
     }
-    implementation 'com.android.support:multidex:1.0.3'
-    implementation project(":yeyue")//因为 CommonRes 依赖了 CommonSDK, 所以如果业务模块需要公共 UI 组件就依赖 CommonRes, 如果不需要就只依赖 CommonSDK
-    implementation project(":CommonService")
+    api 'com.android.support:multidex:1.0.3'
+    implementation project(":CommonRes")
+  //因为 CommonRes 依赖了 CommonSDK, 所以如果业务模块需要公共 UI 组件就依赖 CommonRes, 如果不需要就只依赖 CommonSDK
+    api project(":CommonService")
 
     //tools
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]

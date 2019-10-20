@@ -10,7 +10,7 @@ import com.yeyue.library.base.YePageFragment;
 import java.util.ArrayList;
 
 public class DiycodeFragment extends YePageFragment {
-    private String[] titles = {"NEWS","TOPICS","SITE"};
+    private String[] titles = {"SITE","NEWS","TOPICS"};
     @Override
     public String[] getTitlse() {
         return titles;
@@ -26,7 +26,6 @@ public class DiycodeFragment extends YePageFragment {
                 fragments.add(DiyCodeListFragment.newInstance(Constant.DIYCODE_NEW_LIST));
             }else{
                 fragments.add(DiyCodeListFragment.newInstance(Constant.DIYCODE_TOPIC_LIST));
-
             }
         }
         return fragments;

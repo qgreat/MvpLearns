@@ -37,7 +37,7 @@ public class WeChatTagFragment extends YeSettingFragment {
     }
     @Override
     public int inflateMenu() {
-        return R.menu.wechat_tag;
+        return R.menu.collect_wechat_tag;
     }
 
     @Override

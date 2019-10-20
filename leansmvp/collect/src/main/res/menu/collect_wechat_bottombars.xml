@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/wechat_newlist"
-        android:icon="@drawable/nav_icon_home"
+        android:icon="@drawable/collect_nav_icon_home"
         android:title="推荐" />
     <item
         android:id="@+id/wechat_tag"
-        android:icon="@drawable/nav_icon_livewp"
+        android:icon="@drawable/collect_nav_icon_livewp"
         android:title="新闻" />
 </menu>

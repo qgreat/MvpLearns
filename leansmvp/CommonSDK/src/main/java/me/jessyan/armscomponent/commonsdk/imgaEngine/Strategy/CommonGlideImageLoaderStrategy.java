@@ -19,6 +19,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
@@ -53,7 +54,13 @@ public class CommonGlideImageLoaderStrategy implements BaseImageLoaderStrategy<C
     public void loadImage(Context ctx, CommonImageConfigImpl config) {
         Preconditions.checkNotNull(ctx, "Context is required");
         Preconditions.checkNotNull(config, "ImageConfigImpl is required");
-        if (TextUtils.isEmpty(config.getUrl())) throw new NullPointerException("Url is required");
+        // TODO: 2019/10/14
+        //滑动中的话，url有时还没有加载到,可能会出现url为空的
+        if (TextUtils.isEmpty(config.getUrl())) {
+            Toast.makeText(ctx, "url为空", Toast.LENGTH_SHORT);
+            return;
+//            throw new NullPointerException("Url is required");
+        }
         Preconditions.checkNotNull(config.getImageView(), "ImageView is required");
 
 

@@ -4,8 +4,8 @@
 
     <application>
         <activity
-            android:name=".mvp.ui.activity.MainActivity"
-            android:label="@string/public_name_gank"
+            android:name=".mvp.ui.activity.CollectMainActivity"
+            android:label="@string/public_name_collect"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"/>
         <activity android:name=".mvp.ui.activity.UserActivity"></activity>

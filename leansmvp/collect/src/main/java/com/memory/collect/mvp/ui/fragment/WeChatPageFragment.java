@@ -5,6 +5,7 @@ import android.view.MenuItem;
 
 import com.jess.arms.di.component.AppComponent;
 import com.memory.collect.R;
+import com.memory.collect.R2;
 import com.memory.collect.app.Constant;
 import com.memory.collect.mvp.model.entity.wechat.WeChatTag;
 import com.memory.collect.utils.ActivityUtils;
@@ -32,7 +33,7 @@ public class WeChatPageFragment extends YePageFragment {
     }
     @Override
     public int getContentViewId() {
-        return R.layout.fragment_wechat_page;
+        return R.layout.collect_fragment_wechat_page;
     }
 
     @Override
@@ -105,7 +106,7 @@ public class WeChatPageFragment extends YePageFragment {
         reloadViewPage();
     }
 
-    @OnClick(R.id.ivSelectTag)
+    @OnClick(R2.id.ivSelectTag)
     public void onViewClicked() {
         ActivityUtils.openWeChataTagActivity(getActivity(),type);
     }

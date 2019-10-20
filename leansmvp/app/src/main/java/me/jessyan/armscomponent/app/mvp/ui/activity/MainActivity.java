@@ -34,6 +34,7 @@ import me.jessyan.armscomponent.app.R;
 import me.jessyan.armscomponent.commonsdk.core.RouterHub;
 import me.jessyan.armscomponent.commonsdk.utils.Utils;
 import me.jessyan.armscomponent.commonservice.cite.service.CiteInfoService;
+import me.jessyan.armscomponent.commonservice.collect.service.CollectInfoService;
 import me.jessyan.armscomponent.commonservice.gank.service.GankInfoService;
 import me.jessyan.armscomponent.commonservice.gold.service.GoldInfoService;
 import me.jessyan.armscomponent.commonservice.zhihu.service.ZhihuInfoService;
@@ -58,6 +59,8 @@ public class MainActivity extends BaseActivity {
     Button mGoldButton;
     @BindView(R.id.bt_cite)
     Button mCiteButton;
+    @BindView(R.id.bt_collect)
+    Button mCollectButton;
 
     @Autowired(name = RouterHub.ZHIHU_SERVICE_ZHIHUINFOSERVICE)
     ZhihuInfoService mZhihuInfoService;
@@ -67,6 +70,8 @@ public class MainActivity extends BaseActivity {
     GoldInfoService mGoldInfoService;
     @Autowired(name = RouterHub.CITE_SERVICE_CITEINFOSERVICE)
     CiteInfoService mCiteInfoService;
+    @Autowired(name = RouterHub.COLLECT_SERVICE_COLLECTINFOSERVICE)
+    CollectInfoService mCollectInfoService;
 
     private long mPressedTime;
 
@@ -87,14 +92,26 @@ public class MainActivity extends BaseActivity {
         loadGankInfo();
         loadGoldInfo();
         loadCiteInfo();
+        loadCollectInfo();
     }
 
+    private void loadCollectInfo() {
+        if (mCollectInfoService == null) {
+            mCollectButton.setEnabled(false);
+            return;
+        }
+        if (mCollectButton != null) {
+            mCollectButton.setText(mCollectInfoService.getInfo().getName());
+        }
+    }
     private void loadCiteInfo() {
         if (mCiteInfoService == null) {
             mCiteButton.setEnabled(false);
             return;
         }
-        mCiteButton.setText(mCiteInfoService.getInfo().getName());
+        if (mCiteButton != null) {
+            mCiteButton.setText(mCiteInfoService.getInfo().getName());
+        }
     }
 
     private void loadZhihuInfo() {
@@ -154,7 +171,7 @@ public class MainActivity extends BaseActivity {
      * 在注解上使用 R2, 下面使用 R, 并且使用 {@code if else}, 替代 {@code switch}
      *
      */
-    @OnClick({R.id.bt_zhihu, R.id.bt_gank, R.id.bt_gold, R.id.bt_cite})
+    @OnClick({R.id.bt_zhihu, R.id.bt_gank, R.id.bt_gold, R.id.bt_cite,R.id.bt_collect})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_zhihu:
@@ -168,6 +185,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.bt_cite:
                 Utils.navigation(MainActivity.this, RouterHub.CITE_HOMEACTIVITY_CITE);
+                break;
+            case R.id.bt_collect:
+                Utils.navigation(MainActivity.this, RouterHub.COLLECT_HOMEACTIVITY_COLLECT);
                 break;
         }
     }

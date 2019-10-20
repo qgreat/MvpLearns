@@ -13,20 +13,18 @@ public class WeChatFragment extends YeBottomBarFragment {
     @Override
     public Fragment getFragment(int tag) {
         Fragment fragment = null;
-        switch (tag) {
-            case R.id.wechat_newlist:
-                fragment = WeChatListFragment.newInstance(Constant.WECHAT_NEW_LIST,"keji");
-                break;
-            case R.id.wechat_tag:
-                fragment = WeChatPageFragment.newInstance(Constant.WECHAT_NEW_TAG);
-                break;
+        if (tag == R.id.wechat_newlist) {
+            fragment = WeChatListFragment.newInstance(Constant.WECHAT_NEW_LIST,"keji");
+        } else if (tag == R.id.wechat_tag) {
+            fragment = WeChatPageFragment.newInstance(Constant.WECHAT_NEW_TAG);
+
         }
         return fragment;
     }
 
     @Override
     public int inflateMenu() {
-        return R.menu.wechat_bottombars;
+        return R.menu.collect_wechat_bottombars;
     }
 
     @Override
