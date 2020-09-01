@@ -6,6 +6,7 @@ ext {
                    dagger2SdkVersion       : "2.14.1",
                    glideSdkVersion         : "4.5.0",
                    butterknifeSdkVersion   : "8.8.1",
+                   butterknifeSdkVersionCompile   : "9.0.0",
                    rxlifecycleSdkVersion   : "1.0",
                    rxlifecycle2SdkVersion  : "2.2.1",
                    espressoSdkVersion      : "3.0.1",
@@ -39,7 +40,7 @@ ext {
           //view
           "autolayout"               : "com.zhy:autolayout:1.4.5",
           "butterknife"              : "com.jakewharton:butterknife:${version["butterknifeSdkVersion"]}",
-          "butterknife-compiler"     : "com.jakewharton:butterknife-compiler:${version["butterknifeSdkVersion"]}",
+          "butterknife-compiler"     : "com.jakewharton:butterknife-compiler:${version["butterknifeSdkVersionCompile"]}",
           "pickerview"               : "com.contrarywind:Android-PickerView:3.2.5",
           "photoview"                : "com.github.chrisbanes.photoview:library:1.2.3",
           "numberprogressbar"        : "com.daimajia.numberprogressbar:library:1.2@aar",
